@@ -6,8 +6,8 @@ const { ensureAuthenticated } = require('../config/auth');
 const bodyParser = require('body-parser');
 // const bootstrap = require('bootstrap');
 
-const Post = require('../models/Post');
-const User = require('../models/User');
+const Post = require('../models/post');
+const User = require('../models/user');
 router.use(expressLayouts); 
 router.use(bodyParser.urlencoded({ extended: true }))
 // const posts = [
