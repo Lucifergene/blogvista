@@ -1,0 +1,109 @@
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+    <div class="container">
+      <a class="navbar-brand" >BlogVista</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        Menu
+        <i class="fas fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/about">About</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/post">Create Post</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/contact">Contact</a>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" id="dropdown1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%= user.name %></a>
+            <ul class="dropdown-menu" aria-labelledby="dropdown1">
+                <li class="dropdown-item"><a href="/dashboard">Dashboard</a></li>
+                <li class="dropdown-item"><a href="/users/logout">Logout</a></li>
+            </ul>
+        </li>
+          <!-- <li class="nav-item">
+              <a class="nav-link" href="/users/login">Login</a>
+          </li> -->
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+
+
+
+
+
+
+
+<!-- Page Header -->
+<header class="masthead" style="background-image: url('https://picsum.photos/1000/100/?random')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+          <div class="page-heading">
+            <h1>Update Post</h1>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+   
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 offset-md-2">
+        <form action="/update/<%= post.id %>/store" method="POST">
+            <input type="hidden", name="_method", value="PUT">
+            <input type="hidden", name="_id", value="<%= post.id %>">
+            <div class="control-group">
+                <div class="form-group floating-label-form-group controls">
+                  <label>Username</label>
+                  <input type="text" name="username" placeholder="Username" class="form-control" value="<%= user.name %>">
+                </div>
+              </div>
+          <div class="control-group">
+            <div class="form-group floating-label-form-group controls">
+              <label>Title</label>
+              <input type="text" name="title" placeholder="Title" class="form-control" value= "<%= post.title %>">
+            </div>
+          </div>
+          <div class="control-group">
+            <div class="form-group floating-label-form-group controls">
+              <label>Description</label>
+              <input type="text" name="description" placeholder="Description" class="form-control" value= "<%= post.description %>">
+            </div>
+          </div>
+          <div class="control-group">
+            <div class="form-group floating-label-form-group controls">
+              <label>Content</label>
+              <textarea name = "content" cols="64" rows="5" class="form-control"> <%= post.content %> </textarea>
+                <!-- <input type="text" style="height:180px" name = "content" placeholder="" cols="30" rows="10" class="form-control" value= "<%= post.content %>"> -->
+              
+              
+            </div>
+          </div>
+          <div class="form-group my-4 text-center">
+            <button type="submit" class="btn btn-info btn-fill pull-right">Update Post
+              
+            </button>
+            <a href="/delete/<%= post.id %>" class="btn btn-info btn-fill pull-right" role="button">Delete Post</a>
+          </div>
+        </form>
+        </form>
+      </div>
+    </div>
+  </div>
+  <br>
+<hr>
+
+
+
+        
+        

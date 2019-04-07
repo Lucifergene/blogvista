@@ -1,0 +1,127 @@
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light fixed-top" id="mainNav">
+        <div class="container">
+          <a class="navbar-brand" href="/welcomeback">BlogVista</a>
+          <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            Menu
+            <i class="fas fa-bars"></i>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+              <!-- <li class="nav-item">
+                <a class="nav-link" href="/">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/about">About</a>
+              </li> -->
+              <!-- <li class="nav-item">
+                <a class="nav-link" href="/post">Create Post</a>
+              </li> -->
+              <!-- <li class="nav-item">
+                <a class="nav-link" href="/contact">Contact</a>
+              </li> -->
+              <li class="nav-item">
+                  <a class="nav-link" href="/welcomeback">Back</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="/users/logout">Logout</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      
+      
+      <!-- Page Header -->
+<header class="masthead" style="background-image: url('img/post-bg.jpg')">
+    <div class="overlay"></div>
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-10 col-md-10 mx-auto">
+          <div class="site-heading">
+            <h1>Dashboard</h1>
+            <span class="subheading">Welcome <%= user.name %></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+<!-- <h1 class="mt-4">Dashboard</h1> -->
+
+<h2><center>Change your Personal Details</center></h2>
+<br>
+<br>
+<!-- <p class="lead mb-3">Welcome <%= user.name %></p>   
+<p class="lead mb-3">Current E-Mail: <%= user.email %></p> -->
+
+<div class="content">
+        
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-10 mx-auto">
+                
+                <div class="">
+                    <!-- <div class="header">
+                        <h4 class="title">Edit Profile</h4>
+                    </div> -->
+                    <div class="content"></div>
+                   
+                        <form action="/dashboard/store" method="POST">
+                            <input type="hidden", name="_method", value="PUT">
+                            <div class="row">
+                                <div class="col-md-10 mx-auto">
+                                    <div class="form-group">
+                                        <label>Current Name: <%= user.name %></label>
+                                        <input type="text" name="name" class="form-control"  placeholder="Update Name" value="">
+                                    </div>
+                                </div>                              
+                            </div>
+                            <div class="row">
+                                <div class="col-md-10 mx-auto">
+                                    <div class="form-group">
+                                        <label>Current E-Mail: <%= user.email %></label>
+                                        <input type="email" name="email" class="form-control" placeholder="Update E-Mail" value="">
+                                    </div>
+                                </div>
+                            </div>                         
+                            <p style="line-height: 70px; text-align: center;"><button type="submit" class="btn btn-info btn-fill pull-right">Update Profile</button></p>
+                        </form>   
+                    </form>
+                        </div>
+                </div>
+            </div>
+</div>
+</div>
+</div>
+<br>
+<hr>
+<br>
+<br>
+ <div class="container">
+    <div class="row">
+      <div class="col-md-10 mx-auto">
+        <h1><center>Edit My Blogs</center></h1>
+        <br>
+          <div class="list-group">
+         
+
+              <% indpost.forEach((post) => { %>
+                <a href="/update/<%= post.id %>" class="list-group-item">
+                  <h3 class="list-group-item-heading"><%= post.title %></h3>
+                <span><%= post.description %></span>
+                  <p class="list-group-item-text">Posted on <%= post.createdAt.toDateString() %></p>
+                </a>
+                <br>
+              <% }) %>
+            </div>
+        </div>
+    </div>
+    <br>
+    
+     <div class="form-group my-4 text-center">            
+            <a href="/post" class="btn btn-info btn-fill pull-right" role="button">Create Post</a>
+          </div>
+    <hr>
+<!-- 
+<a href="/welcomeback" class="btn btn-secondary">Back</a>
+<a href="/users/logout" class="btn btn-secondary">Logout</a> -->
