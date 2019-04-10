@@ -72,7 +72,7 @@ router.get('/welcomeback',ensureAuthenticated, async (req, res) => {
 
 // db.orders.find().sort( { amount: -1 } )
 // {user: req.user}
-//db.posts.find().sort({ "createdAt" : -1})
+//db.posts.find().sort({ "_id" : -1})
 
 
 router.get('/contact', (req, res) =>
