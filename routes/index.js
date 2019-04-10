@@ -53,7 +53,7 @@ router.get('/', async (req, res) => {
     const {userId} = req.session
     console.log(req.session)    
     // $ { userId ? res.redirect('/welcomeback') : res.redirect('/') }
-    const posts = await Post.find().sort({ "createdAt" : -1})
+    const posts = await Post.find().sort({ "_id" : -1})
     res.render('welcome', { posts: posts })
   });
 
@@ -66,7 +66,7 @@ router.get('/', async (req, res) => {
 // })
 
 router.get('/welcomeback',ensureAuthenticated, async (req, res) => {    
-    const posts = await Post.find().sort({ "createdAt" : -1})
+    const posts = await Post.find().sort({ "_id" : -1})
     res.render('welcomeback', { posts: posts , user: req.user}) 
 });
 
