@@ -11,7 +11,7 @@ router.use(expressLayouts);
 router.use(BodyParser.json());
 router.use(BodyParser.urlencoded({ extended: true }));
 
-const RECAPTCHA_SECRET = "6LfYVZ4UAAAAAAct9I2Fx4GSTsEkYS4nD4avd4EA";
+const RECAPTCHA_SECRET = "6LdIXJ4UAAAAAHX1zSsRsGGhV8CujACpvSWd2CXS";
 
 
 // Login Page
