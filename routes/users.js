@@ -3,9 +3,15 @@ const expressLayouts = require('express-ejs-layouts');
 const router = express.Router();
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
+var BodyParser = require('body-parser');
+var request = require('request');
 // Load User model
 const User = require('../models/User');
 router.use(expressLayouts);
+router.use(BodyParser.json());
+router.use(BodyParser.urlencoded({ extended: true }));
+
+const RECAPTCHA_SECRET = "6LfYVZ4UAAAAAAct9I2Fx4GSTsEkYS4nD4avd4EA";
 
 
 // Login Page
@@ -18,6 +24,19 @@ router.get('/register', (req, res) => res.render('register'));
 
 // Register
 router.post('/register', (req, res) => {
+  
+  var recaptcha_url = "https://www.google.com/recaptcha/api/siteverify?";
+  recaptcha_url += "secret=" + RECAPTCHA_SECRET + "&";
+  recaptcha_url += "response=" + request.body["g-recaptcha-response"] + "&";
+  recaptcha_url += "remoteip=" + request.connection.remoteAddress;
+  Request(recaptcha_url, function(error, resp, body) {
+      body = JSON.parse(body);
+      if(body.success !== undefined && !body.success) {
+          return response.send({ "message": "Captcha validation failed" });
+      }
+      response.header("Content-Type", "application/json").send(body);
+  });
+  
   const {name , email , password, password2 } = req.body;
   let errors = [];
 
