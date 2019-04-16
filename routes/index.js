@@ -94,7 +94,7 @@ router.get('/post',ensureAuthenticated, (req, res) =>
 
 
 
-router.get('/post/:id',ensureAuthenticated,  async (req, res) => {
+router.get('/post/:id', async (req, res) => {
     const post = await Post.findById(req.params.id)
     // const lay =  { layout: './views/layout' }
     res.render('post', {post: post ,  user: req.user})
