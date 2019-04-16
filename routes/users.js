@@ -11,31 +11,89 @@ router.use(expressLayouts);
 router.use(BodyParser.json());
 router.use(BodyParser.urlencoded({ extended: true }));
 
-const RECAPTCHA_SECRET = "6LdIXJ4UAAAAAHX1zSsRsGGhV8CujACpvSWd2CXS";
-
-
 // Login Page
 router.get('/login', (req, res) => {
 res.render('login');
 });
 
 // Register Page
-router.get('/register', (req, res) => res.render('register'));
+router.get('/register', (req, res) => 
+res.render('register'));
 
 // Register
 router.post('/register', (req, res) => {
-  
-  var recaptcha_url = "https://www.google.com/recaptcha/api/siteverify?";
-  recaptcha_url += "secret=" + RECAPTCHA_SECRET + "&";
-  recaptcha_url += "response=" + request.body["g-recaptcha-response"] + "&";
-  recaptcha_url += "remoteip=" + request.connection.remoteAddress;
-  Request(recaptcha_url, function(error, resp, body) {
-      body = JSON.parse(body);
-      if(body.success !== undefined && !body.success) {
-          return response.send({ "message": "Captcha validation failed" });
-      }
-      response.header("Content-Type", "application/json").send(body);
+  //Recapcha Interface
+  if(req.body['g-recaptcha-response'] === undefined || req.body['g-recaptcha-response'] === '' || req.body['g-recaptcha-response'] === null)
+  {
+        req.flash(
+          'error_msg',
+          'Please select Captcha first'
+        );
+        res.redirect('/users/register');
+    
+    // Swal.fire('Hello world!'); 
+    // Swal.fire({
+    //   type: 'error',
+    //   title: 'Oops...',
+    //   text: 'Something went wrong!',
+    //   footer: '<a href>Why do I have this issue?</a>'
+    // });
+    // return res.json({"responseError" : "Please select captcha first"});
+    // return errors.push({ msg: 'Please select captcha first' });
+    // windows.alert('Please select Captcha first');
+    
+  }
+
+  const secretKey = "6LdIXJ4UAAAAAHX1zSsRsGGhV8CujACpvSWd2CXS";
+
+  const verificationURL = "https://www.google.com/recaptcha/api/siteverify?secret=" + secretKey + "&response=" + req.body['g-recaptcha-response'] + "&remoteip=" + req.connection.remoteAddress;
+
+  request(verificationURL,function(error,response,body) {
+    body = JSON.parse(body);
+
+    if(body.success !== undefined && !body.success) 
+    {
+      req.flash(
+        'error_msg',
+        'Failed captcha verification'
+      );
+      // return res.json({"responseError" : "Failed captcha verification"});
+      // return errors.push({ msg: 'Failed captcha verification' });
+      
+    }
+    // res.json({"responseSuccess" : "Sucess"});
   });
+
+  // if(
+  //   req.body.captcha === undefined ||
+  //   req.body.captcha === '' ||
+  //   req.body.captcha === null
+  // ){
+  //   return res.json({"success": false, "msg":"Please select captcha"});
+  // }
+
+  // // Secret Key
+  // const secretKey = '6LdIXJ4UAAAAAHX1zSsRsGGhV8CujACpvSWd2CXS';
+
+  // // Verify URL
+  // const verifyUrl = `https://google.com/recaptcha/api/siteverify?secret=${secretKey}&response=${req.body.captcha}&remoteip=${req.connection.remoteAddress}`;
+
+  // // Make Request To VerifyURL
+  // request(verifyUrl, (err, response, body) => {
+  //   body = JSON.parse(body);
+    // console.log(body);
+
+  //   // If Not Successful
+  //   if(body.success !== undefined && !body.success){
+  //     // return res.json({"success": false, "msg":"Failed captcha verification"});
+  //   }
+
+  //   //If Successful
+  //   // return res.json({"success": true, "msg":"Captcha passed"});
+  // });
+
+  
+
   
   const {name , email , password, password2 } = req.body;
   let errors = [];
@@ -97,6 +155,18 @@ router.post('/register', (req, res) => {
       }
     });
   }
+  
+  //   var recaptcha_url = "https://www.google.com/recaptcha/api/siteverify?";
+//   recaptcha_url += "secret=" + RECAPTCHA_SECRET + "&";
+//   recaptcha_url += "response=" + request.body["g-recaptcha-response"] + "&";
+//   recaptcha_url += "remoteip=" + request.connection.remoteAddress;
+//   Request(recaptcha_url, function(error, resp, body) {
+//       body = JSON.parse(body);
+//       if(body.success !== undefined && !body.success) {
+//           return response.send({ "message": "Captcha validation failed" });
+//       }
+//       response.header("Content-Type", "application/json").send(body);
+//   });
 });
 
 // Login
