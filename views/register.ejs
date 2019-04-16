@@ -9,7 +9,9 @@
       </h1>
       <% include ./partials/messages %>
       <form action="/users/register" method="POST">
-        
+        <!-- <form action="/users/register" id="subscribeForm" method="POST" onsubmit="return submitUserForm();"> -->
+            
+        <!-- <form id="subscribeForm">        -->
         
         <div class="form-group">
             <label for="name">Name</label>
@@ -57,8 +59,11 @@
           />
         </div>
         
-        <div class="g-recaptcha" data-sitekey="6LdIXJ4UAAAAABXrSRfyM4VcV55-HyWTu4dyJxiA"></div>
-        <br/>
+        <div class="form-group my-4 text-center">
+          <div class="g-recaptcha" data-sitekey="6LdIXJ4UAAAAABXrSRfyM4VcV55-HyWTu4dyJxiA" data-callback="verifyCaptcha"></div>
+              <div id="g-recaptcha-error"></div>
+        </div>
+                  
         
         <button type="submit" class="btn btn-primary btn-block">
           Register
@@ -69,3 +74,50 @@
   </div>
 </div>
 </div>
+
+<!-- <script src='https://www.google.com/recaptcha/api.js'></script>
+<script>
+function submitUserForm() {
+    var response = grecaptcha.getResponse();
+    if(response.length == 0) {
+        document.getElementById('g-recaptcha-error').innerHTML = '<span style="color:red;">This field is required.</span>';
+        return false;
+    }
+    return true;
+}
+ 
+function verifyCaptcha() {
+    document.getElementById('g-recaptcha-error').innerHTML = '';
+}
+</script> -->
+
+ 
+<!-- <script>
+    document.getElementById('subscribeForm').addEventListener('submit', submitForm);
+
+    function submitForm(e){
+      e.preventDefault();
+      
+      // const name = document.querySelector('#name').value;
+      // const email = document.querySelector('#email').value;
+      // const password = document.querySelector('#password').value;
+      // const password2 = document.querySelector('#password2').value;
+      const captcha = document.querySelector('#g-recaptcha-response').value;
+
+      fetch('/users/register', {
+        method:'POST',
+        headers: {
+          'Accept': 'application/json, text/plain, */*',
+          'Content-type':'application/json'
+        },
+        body:JSON.stringify({captcha: captcha})
+
+        // body:JSON.stringify({name:name, email: email , password:password , password2:password2 ,  captcha: captcha})
+      })
+      .then((res) => res.json())
+      .then((data) => {
+        // console.log(data);
+        alert(data.msg);
+      });
+    }
+  </script> -->
