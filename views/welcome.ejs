@@ -11,6 +11,34 @@
       </div>
     </div>
   </div> -->
+  
+  <script>
+    function myFunction() {
+      var x = document.getElementById("mySection");
+      var y = document.getElementById("mySection2");
+      if (x.style.display === "none") {
+        x.style.display = "block";
+        y.style.display = "none";
+      } 
+     else {
+      x.style.display = "none";
+      y.style.display = "block";
+      }
+    }
+    
+    function myFunction2() {
+      var x = document.getElementById("mySection");
+      var y = document.getElementById("mySection2");
+      if (y.style.display === "none") {
+        y.style.display = "block";
+        x.style.display = "none";
+      } else {
+        y.style.display = "none";
+        x.style.display = "block";
+      }
+    }
+    </script>
+
  
 
    <!-- Navigation -->
@@ -70,6 +98,11 @@
 </div>
 	</div>
 
+ <div class="col-lg-10 col-md-10 mx-auto text-center" >
+      <button class="btn active" onclick="myFunction() ">Grid</button>
+      <button class="btn" onclick="myFunction2()">List</button>
+      </div>
+  
  <!-- Main Content -->
   <div class="container">
     <div class="row">
