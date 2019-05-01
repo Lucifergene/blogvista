@@ -114,7 +114,7 @@ router.post('/posts/store', (req, res) => {
 
 // Dashboard
 router.get('/dashboard', ensureAuthenticated, async (req, res) =>{
-const indpost = await Post.find({username: req.user.name }).sort({ "createdAt" : -1})
+const indpost = await Post.find({ $or: [{author: req.user.name },{username: req.user.name}]}).sort({ "_id" : -1})
   res.render('dashboards',{ indpost: indpost , user: req.user})
   });
 
