@@ -133,7 +133,7 @@ router.get('/users/delete/:id',(req, res) => {
   User.findOneAndDelete({_id: req.params.id}, (err, docs) => {
     if(err) res.json(err);
     else {
-      res.redirect('/welcomeback');
+      res.redirect('/');
     }
   });
 });
