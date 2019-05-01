@@ -127,6 +127,16 @@ router.get('/delete/:id',(req, res) => {
     }
   });
 });
+
+//DELETE USER
+router.get('/users/delete/:id',(req, res) => {
+  User.findOneAndDelete({_id: req.params.id}, (err, docs) => {
+    if(err) res.json(err);
+    else {
+      res.redirect('/welcomeback');
+    }
+  });
+});
 // { layout: 'layout_2', locals: { name: 'test' } }
 
 router.get('/update/:id', ensureAuthenticated, async (req, res) =>{
