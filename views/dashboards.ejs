@@ -101,20 +101,27 @@
  <div class="container">
     <div class="row">
       <div class="col-md-10 mx-auto">
-        <h1><center>Edit My Blogs</center></h1>
+        <h1 style="text-align:center">Edit My Blogs</h1>
         <br>
-          <div class="list-group">
-         
+        <section id="mySection2">
+          <hr>
+    
+          <!-- loop over blog posts and render them -->
 
-              <% indpost.forEach((post) => { %>
-                <a href="/update/<%= post.id %>" class="list-group-item">
-                  <h3 class="list-group-item-heading"><%= post.title %></h3>
-                <span><%= post.description %></span>
-                  <p class="list-group-item-text">Posted on <%= post.createdAt.toDateString() %></p>
-                </a>
-                <br>
-              <% }) %>
+          <% indpost.forEach((post) => { %>
+            <div class="post-preview">
+            <a href="/post/<%= post.id %>" class="list-group-itemew">
+              <h2 class="post-title"><%= post.title %></h2>
+              <h3 class="post-subtitle"><%= post.description %>                 
+                </h3>
+            </a>
+              <!-- <p class="list-group-item-text"><%= post.author %></p> -->
+              <p class="post-meta">Posted By <a href=""><%= post.username %></a> on <%= post.createdAt.toDateString() %></p>
             </div>
+            <hr>
+          <% }) %>
+        
+          </section>
         </div>
     </div>
     <br>
