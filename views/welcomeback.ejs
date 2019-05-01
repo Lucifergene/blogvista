@@ -104,6 +104,48 @@
                   <% }) %>
                 </div>
             
+            <!-- Main Content -->
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-10 col-md-10 mx-auto">
+
+    <section id="mySection2" style="display:none;">
+              <hr>
+        
+              <!-- loop over blog posts and render them -->
+
+              <% posts.forEach((post) => { %>
+                <div class="post-preview">
+                <a href="/post/<%= post.id %>" class="list-group-itemew">
+                  <h2 class="post-title"><%= post.title %></h2>
+                  <h3 class="post-subtitle"><%= post.description %>                 
+                    </h3>
+                </a>
+                  <!-- <p class="list-group-item-text"><%= post.author %></p> -->
+                  <p class="post-meta">Posted By <a href=""><%= post.username %></a> on <%= post.createdAt.toDateString() %></p>
+                </div>
+                <hr>
+              <% }) %>
+            
+      </section>
+
+      <section id="mySection">
+          <hr>
+        <div class="card-columns">
+            <% posts.forEach((post) => { %>
+            <div class="card" style="width:300px">
+            <img class="card-img-top" src="https://picsum.photos/1000/700/?random" alt="Card image" style="width:100%">
+            <div class="card-body">
+              <h4 class="card-title"><%= post.title %></h4>
+              <p class="card-text">Posted By <%= post.username %> on <%= post.createdAt.toDateString() %></p>
+              <a href="/post/<%= post.id %>" class="btn btn-primary stretched-link">Read More..</a>
+            </div>
+          </div>
+          <% }) %>
+        </div>
+      </section>
+           
+
     
       <hr>
     
