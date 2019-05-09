@@ -112,6 +112,15 @@ router.post('/posts/store', (req, res) => {
     })
 });
 
+//LIKES COUNTER
+router.post('/posts/:id/act', (req, res, next) => {
+  const action = req.body.action;
+  const counter = action === 'Like' ? 1 : -1;
+  Post.update({_id: req.params.id}, {$inc: {likes_count: counter}}, {}, (err, numberAffected) => {
+      res.send('');
+  });
+});
+
 // Dashboard
 router.get('/dashboard', ensureAuthenticated, async (req, res) =>{
 const indpost = await Post.find({ $or: [{author: req.user.name },{username: req.user.name}]}).sort({ "_id" : -1})
