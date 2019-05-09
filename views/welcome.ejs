@@ -37,6 +37,76 @@
         x.style.display = "block";
       }
     }
+    
+    //like
+    
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+    var updatePostStats = {
+        Like: function (postId) {
+            document.querySelector('#likes-count-' + postId).textContent++;
+        },
+        Unlike: function(postId) {
+            document.querySelector('#likes-count-' + postId).textContent--;
+        }
+    };
+
+    var toggleButtonText = {
+        Like: function(button) {
+ 
+          // var x = document.getElementById("myImg");
+
+          // x.img.src = "like/up.png";
+          button.textContent = "Unlike";
+          // button.class = "fa fa-thumbs-down";
+            // document.getElementById("myImg").src="like/up.png";
+            
+            // button.image.src = "logo.png";
+
+            
+
+            // document.getElementById("myImg").src="/like/up.png";
+            // button.classList.toggle("fa-thumbs-down");
+        },
+        Unlike: function(button) {
+
+          // var y = document.getElementById("myImg");
+
+          // y.img.src = "like/down.png";
+          button.textContent = "Like";
+          // button.class = "fa fa-thumbs-up";
+
+            // document.getElementById("myImg").src="like/down.png";
+            // button.classList.toggle("fa fa-thumbs-up");
+        }
+    };
+
+        var actOnPost = function (event) {
+        var postId = event.target.dataset.postId;
+        var action = event.target.textContent.trim();
+        toggleButtonText[action](event.target);
+        updatePostStats[action](postId);
+
+        axios.post('/posts/' + postId + '/act', { action: action });
+    };
+    
+        // var onImg= "logo1.png";
+        // var offImg= "logo.png";
+
+
+
+  <!-- <script>
+      function toglike()
+      {
+      document.getElementById("myImg").src="/like/down.png";
+      }
+  </script> -->
+
+<!-- <script>
+    function togglelike(x) {
+      x.classList.toggle("fa-thumbs-down");
+    }
+</script> -->
     </script>
 
  
@@ -125,6 +195,16 @@
                 </a>
                   <!-- <p class="list-group-item-text"><%= post.author %></p> -->
                   <p class="post-meta">Posted By <a href=""><%= post.username %></a> on <%= post.createdAt.toDateString() %></p>
+		  <button class="btn btn-light mr-1" onclick="actOnPost(event)"
+                  
+                          data-post-id="<%= post.id %>">  Like
+                          
+                          <!-- <img (btn btn-light mr-1) id= "myImg" src="/like/up.png" height="30" width="30"> 
+                          <!-- onclick="this.src = this.src == offImg ? onImg : offImg;"/> -->
+                         
+                  </button>
+                  
+                  <span class="btn-label" id="likes-count-<%= post.id%>"><%= post.likes_count %></span>
                 </div>
                 <hr>
               <% }) %>
