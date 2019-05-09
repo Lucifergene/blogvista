@@ -37,8 +37,9 @@
         x.style.display = "block";
       }
     }
+   </script>
     
-    //likes
+
     
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script>
@@ -54,30 +55,14 @@
     var toggleButtonText = {
         Like: function(button) {
  
-          // var x = document.getElementById("myImg");
-
-          // x.img.src = "like/up.png";
+     
           button.textContent = "Unlike";
-          // button.class = "fa fa-thumbs-down";
-            // document.getElementById("myImg").src="like/up.png";
-            
-            // button.image.src = "logo.png";
-
-            
-
-            // document.getElementById("myImg").src="/like/up.png";
-            // button.classList.toggle("fa-thumbs-down");
+  
         },
         Unlike: function(button) {
 
-          // var y = document.getElementById("myImg");
-
-          // y.img.src = "like/down.png";
           button.textContent = "Like";
-          // button.class = "fa fa-thumbs-up";
-
-            // document.getElementById("myImg").src="like/down.png";
-            // button.classList.toggle("fa fa-thumbs-up");
+        
         }
     };
 
@@ -90,8 +75,7 @@
         axios.post('/posts/' + postId + '/act', { action: action });
     };
     
-        // var onImg= "logo1.png";
-        // var offImg= "logo.png";
+      
 
     </script>
 
