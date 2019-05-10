@@ -96,8 +96,9 @@ router.get('/post',ensureAuthenticated, (req, res) =>
 
 router.get('/post/:id', async (req, res) => {
     const post = await Post.findById(req.params.id)
+    const more = await Post.aggregate([ { $sample: { size: 4 } } ])
     // const lay =  { layout: './views/layout' }
-    res.render('post', {post: post ,  user: req.user})
+    res.render('post', {post: post ,  user: req.user, more : more})
 });
 
 // router.post('/posts/store', (req, res) => {
