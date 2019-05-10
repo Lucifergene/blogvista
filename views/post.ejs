@@ -61,24 +61,58 @@
     </header>
 
     <!-- Post Content -->
-    <article>
-        <div class="container">
+    <main>
+              <div class="container">
             <div class="row">
-              <div class="col-lg-10 col-md-10 mx-auto">
-                <%- post.content %>
+              <div class="col-lg-8 col-md-8">
+                <p style="text-align: justify;"><%- post.content %></p>
             </div>
-          </div>
-        </div>
-      </article>
+          
+        
       
-      <br>
+      
+
+      <!-- <% more.forEach((post) => { %>
+        <div class="post-preview">
+        <a href="/post/<%= post.id %>">
+          <h2 class="post-title"><%= post.title %></h2>
+          <h3 class="post-subtitle"><%= post.description %>    </h3>              
+           
+        </a>
+        <p class="post-meta">Posted By <a href=""><%= post.username %></a> on <%= post.createdAt.toDateString() %></p>
+          
+        </div>
+        <hr>
+      <% }) %> -->
+
+
+      <div class="col-lg-4 col-md-4">
+                <section id="yarpp_widget-4" class="widget widget_yarpp_widget">
+                  <h2 class="widget-title">Related Posts</h2>
+                  <br>
+                  <div class='yarpp-related-widget'>
+
+                    <ol>
+                        <% more.forEach((post) => { %>
+                      <li><a href="/post/<%= post._id %>"><%= post.title %></a></li>
+                      
+                      <% }) %>
+                    </ol>
+                    </div>
+                    </section>
+                    </div>
+                    </div>
+                    
+</div>
+
+                    <br>
       
       <div class="row">
       <div class="col-lg-10 col-md-10 mx-auto">
       <div class="fb-comments" data-href="https://blogvista.herokuapp.com/post/<%= post.id %>" data-width="1000" data-numposts="5"></div>
-        </div></div>
-
-
+        </div>
+      </div>
+      
       <!-- Footer -->
       <footer >
           <div class="container">
