@@ -9,7 +9,7 @@ const bodyParser = require('body-parser');
 const Post = require('../models/Post');
 const User = require('../models/User');
 router.use(expressLayouts); 
-router.use(bodyParser.urlencoded({ extended: true }))
+router.use(bodyParser.urlencoded({limit: '50mb' ,  extended: true , parameterLimit: 50000 }))
 // const posts = [
 //     {
 //       id: 1,
