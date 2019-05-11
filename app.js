@@ -53,7 +53,7 @@ app.set('view engine', 'ejs');
    
 
 // Express body parser
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ limit: '50mb' ,  extended: true , parameterLimit: 50000  }));
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({
