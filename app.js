@@ -99,8 +99,13 @@ app.use(function(req, res, next) {
 // Routes
 app.use('/', require('./routes/index.js'));
 app.use('/users', require('./routes/users.js'));
+
 app.get('*',(req, res) =>
 res.status(404).render('error', { layout: 'layouts/error_layout' }));
+
+app.use(function(err, req, res, next) {
+  return res.status(500).render('error_500', { layout: 'layouts/error_500_layout' });
+});
 
 const PORT = process.env.PORT || 5000;
 
