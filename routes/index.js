@@ -76,11 +76,11 @@ router.get('/welcomeback',ensureAuthenticated, async (req, res) => {
 
 
 router.get('/contact', (req, res) =>
-res.render('contact'));
+res.render('contact' ,  { user: req.user}));
 // res.sendFile(path.resolve('./pages/contact.html')));
 
 router.get('/about', (req, res) =>
- res.render('about'));
+ res.render('about'  , { user: req.user}));
 // res.sendFile(path.resolve('./pages/about.html')));
 
 router.get('/post',ensureAuthenticated, (req, res) =>
