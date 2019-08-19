@@ -183,7 +183,7 @@
         <div class="card-columns">
             <% posts.forEach((post) => { %>
             <div class="card" style="width:300px">
-            <img class="card-img-top" src="https://picsum.photos/1000/700/?random" alt="Card image" style="width:100%">
+            <img class="card-img-top" src="https://picsum.photos/1000/700/?random=<%= post.username %>" alt="Card image" style="width:100%">
             <div class="card-body">
               <h4 class="card-title"><%= post.title %></h4>
               <p class="card-text">Posted By <%= post.username %> on <%= post.createdAt.toDateString() %></p>
